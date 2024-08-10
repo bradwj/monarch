@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfvh8o6t3s0g4"]
+
+[ext_resource type="Texture2D" uid="uid://c5klk0o8qqxie" path="res://img/bg.png" id="1_321pg"]
+
+[node name="Background" type="TextureRect"]
+offset_right = 1280.0
+offset_bottom = 720.0
+scale = Vector2(0.898838, 0.899786)
+texture = ExtResource("1_321pg")
+metadata/_edit_lock_ = true
