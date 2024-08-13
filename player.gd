@@ -4,7 +4,8 @@ extends CharacterBody2D
 @export var gravity = 100
 var screen_size
 
-var is_on_ground: bool = false
+var is_on_ground = false
+var screen_border_tolerance = Vector2(100, 100)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -41,5 +42,13 @@ func _physics_process(delta):
 	# Apply the final movement
 	move_and_slide()
 
-	position = position.clamp(Vector2.ZERO, screen_size)
+	# detect when leaves left side of screen
+	if position.x < -screen_border_tolerance.x and not GameState.is_game_over:
+		GameState._on_player_game_over()
+	
+	position = position.clamp(
+		Vector2.ZERO - screen_border_tolerance, 
+		screen_size + screen_border_tolerance
+	)
+	
 	

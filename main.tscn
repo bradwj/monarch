@@ -13,5 +13,3 @@ script = ExtResource("1_4dldj")
 [node name="Player" parent="." instance=ExtResource("1_nhe4s")]
 
 [node name="Ground" parent="." instance=ExtResource("3_8b6wi")]
-
-[node name="GameState" type="Node" parent="."]
