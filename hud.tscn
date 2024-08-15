@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://corihgchervbv"]
+
+[ext_resource type="FontFile" uid="uid://ce2qcndu6jb7o" path="res://fonts/PixelPowerline-11Mg.ttf" id="1_em151"]
+
+[sub_resource type="Theme" id="Theme_em6rl"]
+default_font = ExtResource("1_em151")
+default_font_size = 64
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="ScoreLabel" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme = SubResource("Theme_em6rl")
+theme_override_colors/font_color = Color(1, 1, 0.12549, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1

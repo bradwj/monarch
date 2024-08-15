@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
-@export var speed = Vector2(500, 800)
+signal game_over
+
+@export var speed = Vector2(300, 500)
 @export var gravity = 100
 var screen_size
 
@@ -44,7 +46,8 @@ func _physics_process(delta):
 
 	# detect when leaves left side of screen
 	if position.x < -screen_border_tolerance.x and not GameState.is_game_over:
-		GameState._on_player_game_over()
+		set_physics_process(false) # disable player movement
+		game_over.emit()
 	
 	position = position.clamp(
 		Vector2.ZERO - screen_border_tolerance, 

@@ -1,0 +1,66 @@
+[gd_scene load_steps=11 format=3 uid="uid://c7tqcmsimq1vq"]
+
+[ext_resource type="Script" path="res://flower.gd" id="1_5wu1d"]
+[ext_resource type="Texture2D" uid="uid://dsnrojihvjvai" path="res://img/poppy_pollinated1.png" id="1_xsass"]
+[ext_resource type="Texture2D" uid="uid://bhwd56med8mfd" path="res://img/poppy_pollinated2.png" id="2_m7vob"]
+[ext_resource type="Texture2D" uid="uid://p04b57b1m0qh" path="res://img/poppy_pollinated3.png" id="3_0qblt"]
+[ext_resource type="Texture2D" uid="uid://csnitvdeh7v38" path="res://img/poppy_pollinated4.png" id="4_b5l2e"]
+[ext_resource type="Texture2D" uid="uid://bqyxq8n6ibeeu" path="res://img/poppy_pollinated5.png" id="5_xuh6h"]
+[ext_resource type="Texture2D" uid="uid://t7rljck2tc0e" path="res://img/poppy_unpollinated.png" id="6_hygvx"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_80b3s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_xsass")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_m7vob")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0qblt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_b5l2e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_xuh6h")
+}],
+"loop": true,
+"name": &"pollinate",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_hygvx")
+}],
+"loop": true,
+"name": &"unpollinated",
+"speed": 0.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xwuik"]
+size = Vector2(24, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7le8a"]
+size = Vector2(88, 152)
+
+[node name="Flower" type="Area2D" groups=["flowers"]]
+script = ExtResource("1_5wu1d")
+metadata/_edit_group_ = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(4.4, 7.6)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_80b3s")
+animation = &"unpollinated"
+
+[node name="PollinateCollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -40)
+shape = SubResource("RectangleShape2D_xwuik")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7le8a")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -1,15 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://dohvd200655l1"]
+[gd_scene load_steps=7 format=3 uid="uid://dohvd200655l1"]
 
-[ext_resource type="Script" path="res://GameState.gd" id="1_4dldj"]
 [ext_resource type="PackedScene" uid="uid://digqwj5co8arg" path="res://player.tscn" id="1_nhe4s"]
 [ext_resource type="PackedScene" uid="uid://cfvh8o6t3s0g4" path="res://background.tscn" id="1_rbucj"]
+[ext_resource type="Script" path="res://main.gd" id="1_yh00i"]
 [ext_resource type="PackedScene" uid="uid://qq2txs62w7tv" path="res://ground.tscn" id="3_8b6wi"]
+[ext_resource type="PackedScene" uid="uid://corihgchervbv" path="res://hud.tscn" id="5_10tt2"]
+[ext_resource type="PackedScene" uid="uid://c7tqcmsimq1vq" path="res://flower.tscn" id="6_3yime"]
 
 [node name="Main" type="Node"]
-script = ExtResource("1_4dldj")
+script = ExtResource("1_yh00i")
+flower_scene = ExtResource("6_3yime")
 
 [node name="Background" parent="." instance=ExtResource("1_rbucj")]
 
 [node name="Player" parent="." instance=ExtResource("1_nhe4s")]
 
 [node name="Ground" parent="." instance=ExtResource("3_8b6wi")]
+
+[node name="HUD" parent="." instance=ExtResource("5_10tt2")]
+
+[node name="SpawnFlowerTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="game_over" from="Player" to="." method="_on_player_game_over"]
+[connection signal="timeout" from="SpawnFlowerTimer" to="." method="_on_spawn_flower_timer_timeout"]
