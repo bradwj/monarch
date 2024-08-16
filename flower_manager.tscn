@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bl6vsng3acf7r"]
+
+[ext_resource type="Script" path="res://FlowerManager.gd" id="1_j508p"]
+[ext_resource type="PackedScene" uid="uid://c7tqcmsimq1vq" path="res://flower.tscn" id="2_6xdcu"]
+
+[node name="FlowerManager" type="Node"]
+script = ExtResource("1_j508p")
+flower_scene = ExtResource("2_6xdcu")
+
+[node name="SpawnFlowerTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="FlowerSpawnPoint" type="Marker2D" parent="."]
+position = Vector2(1300, 444)
+
+[connection signal="timeout" from="SpawnFlowerTimer" to="." method="spawn_flower"]

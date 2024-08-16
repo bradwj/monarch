@@ -5,11 +5,10 @@
 [ext_resource type="Script" path="res://main.gd" id="1_yh00i"]
 [ext_resource type="PackedScene" uid="uid://qq2txs62w7tv" path="res://ground.tscn" id="3_8b6wi"]
 [ext_resource type="PackedScene" uid="uid://corihgchervbv" path="res://hud.tscn" id="5_10tt2"]
-[ext_resource type="PackedScene" uid="uid://c7tqcmsimq1vq" path="res://flower.tscn" id="6_3yime"]
+[ext_resource type="PackedScene" uid="uid://bl6vsng3acf7r" path="res://flower_manager.tscn" id="7_w6akn"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_yh00i")
-flower_scene = ExtResource("6_3yime")
 
 [node name="Background" parent="." instance=ExtResource("1_rbucj")]
 
@@ -19,9 +18,6 @@ flower_scene = ExtResource("6_3yime")
 
 [node name="HUD" parent="." instance=ExtResource("5_10tt2")]
 
-[node name="SpawnFlowerTimer" type="Timer" parent="."]
-wait_time = 2.0
-autostart = true
+[node name="FlowerManager" parent="." instance=ExtResource("7_w6akn")]
 
 [connection signal="game_over" from="Player" to="." method="_on_player_game_over"]
-[connection signal="timeout" from="SpawnFlowerTimer" to="." method="_on_spawn_flower_timer_timeout"]
