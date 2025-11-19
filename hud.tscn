@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://corihgchervbv"]
+[gd_scene load_steps=4 format=3 uid="uid://corihgchervbv"]
 
+[ext_resource type="Script" path="res://hud.gd" id="1_d0l7d"]
 [ext_resource type="FontFile" uid="uid://ce2qcndu6jb7o" path="res://fonts/PixelPowerline-11Mg.ttf" id="1_em151"]
 
 [sub_resource type="Theme" id="Theme_em6rl"]
@@ -7,6 +8,7 @@ default_font = ExtResource("1_em151")
 default_font_size = 64
 
 [node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_d0l7d")
 
 [node name="ScoreLabel" type="Label" parent="."]
 anchors_preset = 5

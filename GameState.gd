@@ -1,6 +1,6 @@
 extends Node
 
-var initial_scroll_speed: float = 200.0
+var initial_scroll_speed: float = 150.0
 var scroll_speed: float = initial_scroll_speed
 var time_elapsed: float = 0.0
 var speed_increase_rate: float = 10.0
@@ -24,7 +24,12 @@ func game_over():
 
 func reset():
 	print("GameState: reset()")
+	set_process(true)
 	scroll_speed = initial_scroll_speed
 	is_game_over = false
 	score = 0
-	set_process(true)
+	
+
+func increase_score(point_value: int):
+	score += point_value
+	print(score)

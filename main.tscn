@@ -12,12 +12,13 @@ script = ExtResource("1_yh00i")
 
 [node name="Background" parent="." instance=ExtResource("1_rbucj")]
 
-[node name="Player" parent="." instance=ExtResource("1_nhe4s")]
-
 [node name="Ground" parent="." instance=ExtResource("3_8b6wi")]
+collision_mask = 3
 
 [node name="HUD" parent="." instance=ExtResource("5_10tt2")]
 
 [node name="FlowerManager" parent="." instance=ExtResource("7_w6akn")]
+
+[node name="Player" parent="." instance=ExtResource("1_nhe4s")]
 
 [connection signal="game_over" from="Player" to="." method="_on_player_game_over"]

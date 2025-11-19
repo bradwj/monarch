@@ -2,8 +2,8 @@ extends CharacterBody2D
 
 signal game_over
 
-@export var speed = Vector2(300, 500)
-@export var gravity = 100
+@export var speed = Vector2(200, 300)
+@export var gravity = 50
 var screen_size
 
 var is_on_ground = false
@@ -36,8 +36,6 @@ func _physics_process(delta):
 		var collider = collision.get_collider()
 		if collider.name == "Ground":
 			is_on_ground = true
-			# Move the character backwards at the global scroll speed
-			velocity.x -= GameState.scroll_speed
 	else:
 		is_on_ground = false
 	

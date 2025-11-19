@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c7tqcmsimq1vq"]
+[gd_scene load_steps=12 format=3 uid="uid://c7tqcmsimq1vq"]
 
 [ext_resource type="Script" path="res://flower.gd" id="1_5wu1d"]
 [ext_resource type="Texture2D" uid="uid://dsnrojihvjvai" path="res://img/poppy_pollinated1.png" id="1_xsass"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://csnitvdeh7v38" path="res://img/poppy_pollinated4.png" id="4_b5l2e"]
 [ext_resource type="Texture2D" uid="uid://bqyxq8n6ibeeu" path="res://img/poppy_pollinated5.png" id="5_xuh6h"]
 [ext_resource type="Texture2D" uid="uid://t7rljck2tc0e" path="res://img/poppy_unpollinated.png" id="6_hygvx"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_p2o77"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_80b3s"]
 animations = [{
@@ -26,26 +28,30 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("5_xuh6h")
 }],
-"loop": true,
+"loop": false,
 "name": &"pollinate",
-"speed": 1.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("6_hygvx")
 }],
-"loop": true,
+"loop": false,
 "name": &"unpollinated",
 "speed": 0.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xwuik"]
-size = Vector2(24, 24)
+size = Vector2(88, 72)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7le8a"]
 size = Vector2(88, 152)
 
-[node name="Flower" type="Area2D" groups=["flowers"]]
+[node name="Flower" type="RigidBody2D" groups=["flowers"]]
+collision_layer = 4
+physics_material_override = SubResource("PhysicsMaterial_p2o77")
+gravity_scale = 10.0
+lock_rotation = true
 script = ExtResource("1_5wu1d")
 metadata/_edit_group_ = true
 
@@ -54,9 +60,13 @@ scale = Vector2(4.4, 7.6)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_80b3s")
-animation = &"unpollinated"
+animation = &"pollinate"
 
-[node name="PollinateCollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="PollinateArea2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PollinateArea2D"]
 position = Vector2(0, -40)
 shape = SubResource("RectangleShape2D_xwuik")
 
@@ -64,3 +74,6 @@ shape = SubResource("RectangleShape2D_xwuik")
 shape = SubResource("RectangleShape2D_7le8a")
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="PollinateArea2D" to="." method="_on_pollinate_area_2d_body_entered"]
+[connection signal="body_exited" from="PollinateArea2D" to="." method="_on_pollinate_area_2d_body_exited"]

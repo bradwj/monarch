@@ -3,14 +3,15 @@
 [ext_resource type="Script" path="res://ground.gd" id="1_gvadb"]
 [ext_resource type="Texture2D" uid="uid://bor008aamcxj" path="res://img/ground.png" id="1_wdoic"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4a4ny"]
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4qdtr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7roq2"]
 size = Vector2(2560, 128)
 
 [node name="Ground" type="StaticBody2D"]
 position = Vector2(1280, 584)
-physics_material_override = SubResource("PhysicsMaterial_4a4ny")
+collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_4qdtr")
 script = ExtResource("1_gvadb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
